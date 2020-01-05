@@ -2,6 +2,8 @@ DROP TABLE IF EXISTS collaborator;
 DROP TABLE IF EXISTS interview;
 DROP TABLE IF EXISTS project;
 DROP TABLE IF EXISTS collaborator_project;
+DROP TABLE IF EXISTS situation;
+DROP TABLE IF EXISTS collaborator_situation;
 
 CREATE TABLE collaborator (
   mail_adresse VARCHAR(250) PRIMARY KEY
@@ -50,3 +52,24 @@ INSERT INTO collaborator_project (mail_adresse, project_id) VALUES
   ('adangote@sqli.com',2),
   ('yelouardi@sqli.com',3),
   ('yelouardi@sqli.com',4);
+
+  CREATE TABLE situation (
+    situation_id INT AUTO_INCREMENT  PRIMARY KEY,
+    situation_title VARCHAR(250) NOT NULL,
+    situation_description VARCHAR(250) NOT NULL
+  );
+  INSERT INTO situation (situation_title, situation_description) VALUES
+    ('InterContrat','Profile Disponible'),
+    ('En mission','Profile En mission cher le client'),
+    ('En projet sur site','Profile placer sur un projet forfait sur site');
+
+  CREATE TABLE collaborator_situation (
+   mail_adresse VARCHAR(250) NOT NULL,
+   situation_id INT NOT NULL
+  );
+
+  INSERT INTO collaborator_project (mail_adresse, situation_id) VALUES
+    ('adangote@sqli.com',1),
+    ('adangote@sqli.com',2),
+    ('yelouardi@sqli.com',3),
+    ('yelouardi@sqli.com',4);

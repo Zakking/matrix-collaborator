@@ -22,7 +22,6 @@ public class Collaborator {
     @Column(unique = true)
     String mailAdresse;
 
-
     @OneToMany(mappedBy="collaborator",fetch=FetchType.LAZY)
     List<Interview> interviewList;
 
@@ -35,5 +34,16 @@ public class Collaborator {
             joinColumns = { @JoinColumn(name = "mail_adresse") },
             inverseJoinColumns = { @JoinColumn(name = "project_id") })
     Set<Project> projects = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "collaborator_situation",
+            joinColumns = { @JoinColumn(name = "mail_adresse") },
+            inverseJoinColumns = { @JoinColumn(name = "situation_id") })
+    Set<Project> situations = new HashSet<>();
+
 
 }

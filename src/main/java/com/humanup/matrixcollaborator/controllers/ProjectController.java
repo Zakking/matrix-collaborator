@@ -56,6 +56,4 @@ public class ProjectController {
         return ResponseEntity.status(HttpStatus.OK).body(findProjects);
     }
 
-
-
 }
